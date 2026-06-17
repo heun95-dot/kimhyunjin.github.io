@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<!-- [수정 1] 브라우저 탭에 뜨는 이름 (화면 본문 아님) -->
+<title>김현진 · AI Content Creator· Content Producer</title>
+<meta name="description" content="AI 콘텐츠 크리에이터 김현진 포트폴리오" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=IBM+Plex+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+<style>
+  /* [수정 2] 색상 / 기본값 — 여기 값만 바꾸면 전체 톤이 바뀝니다 */
+  :root{
+    --bg:#ffffff;
+    --ink:#111111;
+    --muted:#8a8a8a;
+    --line:#e6e6e6;
+    --line-2:#d8d8d8;
+    --chip:#f4f4f4;
+    --maxw:1080px;
+    --radius:10px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--bg);color:var(--ink);font-family:'IBM Plex Sans KR','Archivo',sans-serif;font-weight:300;line-height:1.6;-webkit-font-smoothing:antialiased;}
+  a{color:inherit;text-decoration:none;}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px;}
+
+  /* 상단 헤더 */
+  nav{position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:space-between;gap:20px;padding:18px 24px;background:rgba(255,255,255,0.9);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);}
+  .brand{display:flex;align-items:baseline;gap:10px;flex-shrink:0;}
+  .brand .name{font-weight:600;font-size:18px;letter-spacing:1px;}
+  .brand .role{font-family:'Archivo';font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);}
+  .navlinks{display:flex;gap:20px;font-size:13px;flex-wrap:wrap;justify-content:flex-end;}
+  .navlinks a:hover{color:var(--muted);}
+  @media(max-width:760px){ .brand .role{display:none;} .navlinks{gap:12px;font-size:12px;} }
+
+  /* 섹션 공통 */
+  section{padding:64px 0;}
+  .eyebrow{font-family:'Archivo';font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:10px;}
+  .sec-title{font-size:clamp(28px,5vw,40px);font-weight:600;letter-spacing:-0.5px;}
+  .sec-desc{color:var(--muted);font-size:14px;margin-top:8px;}
+  .sec-head{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:10px;margin-bottom:28px;}
+  .sec-count{font-family:'Archivo';font-size:12px;color:var(--muted);}
+
+  /* HERO */
+  .hero{padding:80px 0;background:#f5f5f7;}
+  .hero h1{font-size:clamp(32px,6vw,56px);font-weight:600;line-height:1.15;letter-spacing:-1px;}
+  .hero p{color:var(--muted);font-size:clamp(15px,2vw,18px);margin-top:18px;max-width:560px;}
+
+  /* [수정 3] 카드 그리드 — 한 줄에 몇 개? repeat(3,1fr)의 3을 바꾸세요 */
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
+  @media(max-width:820px){ .grid{grid-template-columns:repeat(2,1fr);} }
+  @media(max-width:520px){ .grid{grid-template-columns:1fr;} }
+  .grid.four{grid-template-columns:repeat(4,1fr);}
+  @media(max-width:820px){ .grid.four{grid-template-columns:repeat(2,1fr);} }
+  @media(max-width:520px){ .grid.four{grid-template-columns:1fr;} }
+  .card{display:flex;flex-direction:column;}
+  .thumb{position:relative;aspect-ratio:16/9;border-radius:var(--radius);background:#f0f0f0;border:1px solid var(--line);overflow:hidden;display:flex;align-items:center;justify-content:center;}
+  .thumb img{width:100%;height:100%;object-fit:cover;display:block;}
+  .thumb .placeholder{font-family:'Archivo';font-size:11px;letter-spacing:2px;color:#bbb;text-transform:uppercase;}
+  .thumb .tags{position:absolute;top:10px;right:10px;display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end;}
+  .thumb .tags span{font-family:'Archivo';font-size:9px;letter-spacing:1px;text-transform:uppercase;background:rgba(255,255,255,0.92);border:1px solid var(--line-2);color:var(--ink);padding:3px 7px;border-radius:5px;}
+  .thumb.vertical{aspect-ratio:9/16;}
+  .card h3{font-size:15px;font-weight:600;margin-top:12px;line-height:1.4;}
+  .card .meta{font-size:13px;color:var(--muted);margin-top:4px;}
+
+  /* 작업 범위 */
+  .caps{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;}
+  @media(max-width:820px){ .caps{grid-template-columns:repeat(2,1fr);} }
+  @media(max-width:520px){ .caps{grid-template-columns:1fr;} }
+  .cap{background:var(--bg);padding:26px 22px;}
+  .cap h4{font-size:15px;font-weight:600;}
+  .cap p{font-size:13px;color:var(--muted);margin-top:8px;line-height:1.55;}
+  .toolbar{display:flex;flex-wrap:wrap;gap:8px;margin-top:26px;}
+  .toolbar span{font-family:'Archivo';font-size:11px;letter-spacing:1px;color:var(--ink);background:var(--chip);border:1px solid var(--line);padding:7px 13px;border-radius:999px;}
+
+  /* 연락처 */
+  .contact{border-top:1px solid var(--line);text-align:center;padding:80px 0;}
+  .contact h2{font-size:clamp(26px,5vw,42px);font-weight:600;letter-spacing:-0.5px;}
+  .contact h2 a:hover{color:var(--muted);}
+  .contact .links{margin-top:24px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap;}
+  .contact .links a{font-size:13px;border:1px solid var(--line-2);padding:11px 22px;border-radius:999px;color:var(--ink);}
+  .contact .links a:hover{background:var(--ink);color:#fff;border-color:var(--ink);}
+
+  footer{border-top:1px solid var(--line);padding:24px;text-align:center;color:var(--muted);font-family:'Archivo';font-size:11px;letter-spacing:2px;text-transform:uppercase;}
+  /* 작품 제목 누르면 펼쳐지는 상세 */
+  .card details{margin-top:10px;}
+  .card summary{font-size:15px;font-weight:600;cursor:pointer;list-style:none;display:flex;align-items:center;gap:6px;}
+  .card summary::-webkit-details-marker{display:none;}
+  .card summary::before{content:"+";color:var(--muted);font-weight:400;}
+  .card details[open] summary::before{content:"–";}
+  .card .detail{margin-top:8px;}
+  .card .detail-line{font-size:13px;color:var(--muted);}
+  .card .detail p{font-size:13px;color:var(--ink);line-height:1.6;margin-top:6px;}
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     상단 헤더 / 메뉴
+     [수정 4] 메뉴 항목: <a href="#섹션id">보일 글자</a>
+              href="#__" 는 아래 본문 섹션의 id="__" 와 똑같아야 점프됩니다.
+============================================================ -->
+<nav>
+  <div class="brand">
+    <span class="name">김현진</span>
+    <span class="role">AI Content Creator· Content Producer</span>
+  </div>
+  <div class="navlinks">
+    <a href="#home">HOME</a>
+    <a href="#entertain">ENTERTAIN</a>
+    <a href="#brand">BRAND</a>
+    <a href="#shorts">SHORTS</a>
+    <a href="#aicreator">AI CREATOR</a>
+    <a href="#aidrama">AI DRAMA</a>
+    <a href="#contact">CONTACT</a>
+  </div>
+</nav>
+
+<!-- ============ HOME (HERO) ============ -->
+<header class="hero" id="home">
+  <div class="wrap">
+    <h1>이야기마다<br>어울리는 그릇이 있습니다.</h1>
+    <p>웹예능에서 재미를 배우고<br>  브랜드에서 전략을 다듬고<br> AI로 제작의 폭을 넓혀왔습니다.</p>
+  </div>
+</header>
+
+
+<!-- ============================================================
+     [섹션 1] ENTERTAIN
+     - 제목/설명 글자: 아래 sec-title, sec-desc 안쪽 바꾸기
+     - 카드 채우기: <div class="placeholder">THUMBNAIL</div> 를
+       <img src="이미지파일.jpg" alt="설명"> 으로 바꾸면 썸네일 들어감
+       (이미지 파일은 index.html 과 같은 폴더에 두세요)
+     - 카드 추가: <article class="card">...</article> 통째로 복사
+============================================================ -->
+<section id="entertain">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <div class="eyebrow">Entertain</div>
+        <h2 class="sec-title">예능 · 웹예능</h2>
+        <p class="sec-desc">예능·웹예능 현장에서 콘텐츠가 재미를 만드는 원리를 익혔습니다. 시청자가 단순히 보는 것을 넘어 콘텐츠의 팬으로 전환되는 과정을 이해하고, 출연자 간 케미를 살려 인물에 맞는 구성과 포맷을 설계하는 법을 배웠습니다.</p>
+      </div>
+      <div class="sec-count">8 projects</div>
+    </div>
+    <div class="grid">
+      <article class="card">
+          <a href="https://youtube.com/playlist?list=PL4ed5BUFc6UoS8CvHhmWhrOeJz7ZA1kws&si=xbS5KN-6urEnipGn" target="_blank" rel="noopener">
+            <div class="thumb"><img src="9uest.jpg" alt="더퀘스트"><div class="tags"><span>Web</span><span>7eps</span></div></div>
+          </a>
+          <h3>더퀘스트</h3>
+          <div class="meta">9개의 질문으로 가짜를 찾아내라</div>
+          <details>
+            <summary>자세히 보기</summary>
+            <div class="detail">
+            <p>픽시드 오리지널 시리즈 〈더 퀘스트〉는 초기 기획 단계부터 포맷 설계와 구성, 메인 연출을 맡아 전 회차 제작 전반(제작, 촬영, 섭외 등)을 리드했습니다. 첫 회차는 스트레이 키즈 출연 회차로 100만 회 이상의 조회수를 기록했으며, OAP 디자인에도 전 과정에 참여해 프로그램의 톤앤매너와 브랜드 아이덴티티가 일관되게 구현되도록 했습니다. 특히 대부분 회차에 포함된 PPL을 기획, 구성, 반영, 현장 연출까지 일관되게 담당하며, 프로그램의 재미를 해치지 않으면서도 브랜드 메시지가 자연스럽게 전달되도록 완성도를 끌어올렸습니다.</p>
+          </div>
+        </details>
+      </article>
+      <article class="card">
+        <a href="https://youtube.com/playlist?list=PLG7004vZ8qt2H9ct7TAEbtik0qKd9WizX&si=h0HpbZ5MkpmMjapu" target="_blank" rel="noopener">
+            <div class="thumb"><img src="mal.jpg" alt="말년을 자유롭게"><div class="tags"><span>Web</span><span>11eps</span></div></div>
+          </a>
+        <h3>말년을 자유롭게</h3>
+        <div class="meta">침펄기의 노후대비 자아실현기</div>
+        <details>
+            <summary>자세히 보기</summary>
+            <div class="detail">
+            <p>엠드로메다의 대표 콘텐츠인 ‘말년을 자유롭게’의 촬영, 연출, 제작에 참여했습니다. 특히 가편과 믹싱 단계에서 많은 역할을 했습니다. 이말년, 주호민, 기안84가 출연하는 이 예능은 웹툰작가 3명이 평소 하고싶었던 다양한 활동을 자유롭게 하는 프로그램입니다. 소문난 그들의 케미를 살리기 위해 유명한 그들의 밈을 적절히 이용했습니다. 덕분에 시리즈 평균 조회수는 200만 회를 넘기며 큰 성공을 거뒀습니다. </p>
+          </div>
+        </details>
+      </article>
+      <article class="card">
+        <a href="https://youtube.com/playlist?list=PLG7004vZ8qt2aHR6EGH0Lgh5HAK4PliAr&si=NvD_lY-52Ai0KHSX" target="_blank" rel="noopener">
+            <div class="thumb"><img src="PD.jpg" alt="PD의 수첩"><div class="tags"><span>Web</span><span>6eps</span></div></div>
+          </a>
+        <h3>PD의 수첩</h3>
+        <div class="meta">심층 보도(할 수도 있는) 모큐멘터리</div>
+        <details>
+            <summary>자세히 보기</summary>
+            <div class="detail">
+            <p>‘PD 수첩’을 패러디 한 ‘PD의 수첩’의 초창기부터의 기획, 섭외, 촬영, 연출, 제작에 참여했습니다. 페이크 다큐멘터리 형식을 빌린 이 프로그램은 샘 오취리, 영철, 황철순 등 논란을 일으킨 인물들에게 시청자들이 궁금해 했던 질문들을 던집니다. 또한 그 과정에서 무겁지 않게 페이크적인 요소를 가미해 재미를 줬습니다. 특히 모든 편의 가편, 믹싱, 종편부터 자막디자인, 썸네일 디자인, 제목 선정까지 모든 과정에 참여하며 기여를 한 프로그램입니다. </p>
+          </div>
+        </details>
+      </article>
+      <article class="card">
+        <a href="https://youtube.com/playlist?list=PLOBfcaHQ3_2X3xpGuwPRFsiqMYKpeAxE5&si=AFRo2H0aHH_JCcny" target="_blank" rel="noopener">
+            <div class="thumb"><img src="gong.jpg" alt="공범2"><div class="tags"><span>Web</span><span>8eps</span></div></div>
+          </a>
+        <h3>공범2</h3>
+        <div class="meta">상금 1억을 두고 펼치는 일주일간의 리얼타임 마피아게임</div>
+        <details>
+            <summary>자세히 보기</summary>
+            <div class="detail">
+            <p>성공적으로 시즌1이 끝난 서바이벌 웹예능 공범의 시즌2에 인턴으로 참여했습니다. 마피아 게임 특성상 게임 룰에 틈이 없어야 하기 때문에 게임 룰을 계속 고치는 작업을 하였고 화면상에서 강렬한 장면을 연출할 수 있는 방안을 고민했습니다. 예를 들어, 밤이 되면 시민이 죽는 마피아 게임의 특성상 '살인'을 표현해야 하는데, 이를 표현하기 위해 마피아가 호텔 카트를 끌고 방문을 두드리며 망치소리를 내보내는 연출을 고민했습니다. 또한 출연자 섭외에 참여해 최고의 조합을 고민했습니다.</p>
+          </div>
+        </details>
+      </article>
+      <article class="card">
+        <a href="https://youtube.com/playlist?list=PLG7004vZ8qt0zVHdLO9dmdoApR2tBZFca&si=gTD1xecD7lFcQa3I" target="_blank" rel="noopener">
+            <div class="thumb"><img src="daebu.jpg" alt="대부님2"><div class="tags"><span>Web</span><span>6eps</span></div></div>
+          </a>
+        <h3>대부님2</h3>
+        <div class="meta">탁재훈, 풍자의 수상한 라이브카페</div>
+        <details>
+            <summary>자세히 보기</summary>
+            <div class="detail">
+            <p>탁재훈이 언더에서 활동하는 신인 가수들의 예능감을 키워주는 프로그램입니다. 시즌1에서 탁재훈 특유의 입담과 가수들과의 케미로 시즌2를 할 수 있게 됐으며 시즌2의 기획, 섭외, 촬영, 제작, 연출에 참여했습니다. 풍자와 탁재훈, 이상준이라는 전문 진행자들이 신인 가수들의 어설프지만 신선한 토크를 받아치며 나오는 재미를 살리기 위해 편집을 고민했습니다. 특히 디자인부터 참여하며 레트로한 자막과 썸네일, 인트로 등을 고민했습니다.</p>
+          </div>
+        </details>
+      </article>
+      <article class="card">
+        <a href="https://youtube.com/playlist?list=PLKVC3apMBJOQECNAgTPMgC3A7nlPcTcrH&si=oqh7YKEKPhHYz_Fj" target="_blank" rel="noopener">
+            <div class="thumb"><img src="misun.jpg" alt="미선임파서블"><div class="tags"><span>Web</span><span>20eps</span></div></div>
+          </a>
+        <h3>미선임파서블</h3>
+        <div class="meta">박미선의 무한도전</div>
+        <details>
+            <summary>자세히 보기</summary>
+            <div class="detail">
+            <p>20개 회차의 기획, 구성, 촬영에 참여하고 ＇2021 총결산’, ‘방탈출’, ‘그랜절’, '햄버거 미선랭 가이드' 영상의 총 연출을 맡았습니다. 게스트가 참여하면 그와 관련된 자료조사를 통해 가장 좋은 반응을 이끌 수 있는 기획을 고민했습니다. 그 예시로 헤이지니가 출연한 회차에서는 함께 제페토와 말랑이 거래를 해보는 기획을 제안했습니다. 또한 주식편에서는 직접 출연하여 박미선이 재미있는 그림을 보여줄 수 있게 돕는 역할을 하기도 했습니다.</p>
+          </div>
+        </details>
+      </article>
+      <article class="card">
+        <a href="https://youtube.com/playlist?list=PLzY7HbXqj1Tu0B5MgPxxTjBstkxR278id&si=dt2Bkf-nOYS9XkLl" target="_blank" rel="noopener">
+            <div class="thumb"><img src="pdgone.jpg" alt="PD가 사라졌다"><div class="tags"><span>TV</span><span>3eps</span></div></div>
+          </a>
+        <h3>PD가 사라졌다</h3>
+        <div class="meta">MBC에 입사한 AI PD의 실험 프로젝트</div>
+        <details>
+            <summary>자세히 보기</summary>
+            <div class="detail">
+            <p>PD의 자리를 AI가 대체한다면? 어설프게 PD를 흉내 내는 AI `M파고`, 그가 AI 알고리즘을 이용해 프로그램의 게스트를 뽑습니다. 뽑은 게스트들은 시청자들이 좋아하는 예능을 섞어 새롭게 탄생한, `위험한 노래방`과 같은 미션을 수행합니다. 이처럼 예능과 AI를 결합한 이 프로그램의 초기 기획부터 참여하여 구성안까지 작성했고 한국전파진흥회에서 진행한 `뉴테크 융합 지원 사업`에 선정되는 결과를 얻을 수 있었습니다.</p>
+          </div>
+        </details>
+      </article>
+      <article class="card">
+        <a href="https://www.youtube.com/watch?v=CnKRGnb7doU" target="_blank" rel="noopener">
+            <div class="thumb"><img src="hando.jpg" alt="한도초과"><div class="tags"><span>TV</span><span>2eps</span></div></div>
+          </a>
+        <h3>한도초과</h3>
+        <div class="meta">웃음과 재미가 꽉 찬 그녀들의 재미주의 라이프!</div>
+        <details>
+            <summary>자세히 보기</summary>
+            <div class="detail">
+            <p>한도초과 인턴으로 근무하며 가장 중요하게 한 업무는 촬영 준비입니다. 촬영 소품을 빠짐없이 준비하고 촬영 당일 출연자들에게 알맞은 소품을 전달하는 일이었습니다. 이 외에도 선배들이 편집하실 때 필요한 자료 등을 찾는 업무를 했습니다. 더불어 프로그램 티저를 맡게 되어 1회와 2회 촬영분을 이용해 제작했습니다.</p>
+          </div>
+        </details>
+      </article>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============ [섹션 2] BRAND ============ -->
+<section id="brand">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <div class="eyebrow">Brand</div>
+        <h2 class="sec-title">브랜드 콘텐츠</h2>
+        <p class="sec-desc">브랜드가 하고 싶은 말을, 보는 사람이 듣고 싶은 이야기로 옮깁니다. 메시지를 앞세우지 않고 콘텐츠 안에 자연스럽게 녹여, 거부감 없이 전달되게 만듭니다.</p>
+      </div>
+      <div class="sec-count">4 projects</div>
+    </div>
+    <div class="grid">
+      <article class="card">
+        <a href="https://youtube.com/playlist?list=PLexJ-TrK09a9mXPu0KRShC5p_Imheot4r&si=FtkuZg8vWOcQvKCR" target="_blank" rel="noopener">
+            <div class="thumb"><img src="dae.jpg" alt="어떡행"><div class="tags"><span>여기어때</span><span>10eps</span></div></div>
+          </a>
+        <h3>어떡행</h3>
+        <div class="meta">상극인 친구랑 여행할 때</div>
+        <details>
+            <summary>자세히 보기</summary>
+            <div class="detail">
+            <p>여기어때 브랜디드 콘텐츠 시리즈 '어떡행' 제작에 참여하여 섭외, 기획, 구성, 연출, 촬영 등 전체 제작 과정에 폭넓게 관여했습니다. 특히 '슈화, 유연 편'에서는 메인 연출급으로 참여해 여행 코스를 직접 기획하고, 브랜드의 니즈를 반영한 콘셉트 및 연출 방향을 주도했습니다. 클라이언트인 여기어때와 긴밀히 협의하며, 브랜드 메시지를 콘텐츠 내에 자연스럽게 녹여내고 주요 장면의 연출을 효과적으로 부각시키는 역할을 맡았습니다. 이를 통해 시즌2를 진행할 수 있는 기반을 마련했습니다.</p>
+          </div>
+        </details>
+      </article>
+        <article class="card">
+        <a href="https://youtube.com/playlist?list=PLexJ-TrK09a9mXPu0KRShC5p_Imheot4r&si=FtkuZg8vWOcQvKCR" target="_blank" rel="noopener">
+            <div class="thumb"><img src="saeng.jpg" alt="생활과 경제"><div class="tags"><span>토스</span><span>12eps</span></div></div>
+          </a>
+        <h3>생활과 경제</h3>
+        <div class="meta">실생활 100% 반영, 새로운 경제 과목</div>
+        <details>
+            <summary>자세히 보기</summary>
+            <div class="detail">
+            <p>토스의 최초 오리지널 예능 생활과 경제는 대한민국의 경제 교육은 수능 교육에 치중되어 있고 학생들의 실질적인 경제 지식은 많이 부족하다는 점에서 출발했습니다. 이러한 기획 초기부터 전 회차의 아이템 선별, 촬영, 구성, 연출, 편집에 참여한 프로그램입니다. 특히 아이돌 문화를 다룬 덕질편은 100만회의 조회수와 커뮤니티에서 큰 화제를 모으기도 했습니다. 또한 경향금융교육대상을 받은 콘텐츠입니다.</p>
+          </div>
+        </details>
+      </article>
+      <article class="card">
+        <a href="https://www.youtube.com/playlist?list=PLIWtfvmBcNof4mxP9VnkRVFYMehN4zvvr" target="_blank" rel="noopener">
+            <div class="thumb"><img src="100.jpg" alt="혓바닥터스2"><div class="tags"><span>라이엇코리아</span><span>10eps</span></div></div>
+          </a>
+        <h3>혓바닥터스2</h3>
+        <div class="meta">모든 궁금증을 집도한다</div>
+        <details>
+            <summary>자세히 보기</summary>
+            <div class="detail">
+            <p>라이엇 코리아에서 운영하는 유튜브 채널 LCK에 업로드되는 e스포츠 예능 프로그램입니다. 은퇴한 프로게이머 캡틴잭, 헬리오스, 플레임, 샤이 4명과 e스포츠의 주요 이슈를 토론해 보는 예능 형식의 콘텐츠로 프로그램의 기획부터 촬영, 구성, 제작에 참여했습니다. 특히 시즌1에서 변화를 주기 위해 자막 디자인을 전부 제안해 반영되었으며 편집 단계에서는 한 편당 절반의 분량을 매주 제작했습니다.</p>
+          </div>
+        </details>
+      </article>
+     <article class="card">
+        <a href="https://youtube.com/playlist?list=PLexJ-TrK09a9mXPu0KRShC5p_Imheot4r&si=FtkuZg8vWOcQvKCR" target="_blank" rel="noopener">
+            <div class="thumb"><img src="10to100.jpg" alt="토스 10주년 세션"><div class="tags"><span>토스</span><span>8eps</span></div></div>
+          </a>
+        <h3>토스 10주년 세션</h3>
+        <div class="meta">토스 10주년, 새로운 출발선</div>
+        <details>
+            <summary>자세히 보기</summary>
+            <div class="detail">
+            <p>토스의 10주년 오프라인 행사인 '10 to 100'에서 진행된 강연 영상 콘텐츠의 촬영, 제작, 편집 총괄을 담당했습니다. 외부 프로덕션과의 협업을 리드하며, 전체 제작 프로세스의 책임자로서 영상 기획부터 촬영, 편집, 최종 검수까지 전 과정의 퀄리티를 관리했습니다. 특히, 오프닝 모션그래픽, 썸네일 디자인, 화면 톤 & 무드 디렉팅 등 메인 연출자로서 시각적 완성도를 높이기 위해 디테일을 조율했습니다.</p>
+          </div>
+        </details>
+      </article>
+      <article class="card">
+        <a href="https://www.youtube.com/watch?v=IytRLTKXwds&t=12s" target="_blank" rel="noopener">
+            <div class="thumb"><img src="10film.jpg" alt="10주년 필름"><div class="tags"><span>토스</span><span>1ep</span></div></div>
+          </a>
+        <h3>10주년 필름</h3>
+        <div class="meta">토스 10주년 기념 캠페인 필름</div>
+        <details>
+            <summary>자세히 보기</summary>
+            <div class="detail">
+            <p>토스의 10주년을 맞이해 제작한 브랜드 필름의 기획, 제작, 촬영에 참여했습니다. 특히 토스가 2015년 처음으로 세상에 선보인 기능인 간편 송금을 시작으로 지금의 기술까지 발전하게 된 과정들을 보여주는 핵심 스토리라인을 짰으며 촬영부터 제작까지 외주 관리를 하며 완성도 높은 영상을 위해 많은 기여를 했습니다.</p>
+          </div>
+        </details>
+      </article>
+       <article class="card">
+        <a href="https://toss.im/simplicity-24?srsltid=AfmBOorY_DhBVN-esw_6pnITUcCfdKq5ZpK85TSeLYlZBvzsr6QD8dMN" target="_blank" rel="noopener">
+            <div class="thumb"><img src="simple.jpeg" alt="심플리시티24"><div class="tags"><span>토스</span><span>11eps</span></div></div>
+          </a>
+        <h3>심플리시티24</h3>
+        <div class="meta">Toss Design Conference</div>
+        <details>
+            <summary>자세히 보기</summary>
+            <div class="detail">
+            <p>토스 프로덕트 디자이너 채용 시리즈 〈Simplicity 24〉의 전체 제작을 총괄했습니다. 기존 텍스트 중심 채용에 영상을 처음 도입하는 프로젝트로, 사내 스튜디오를 직접 기획·구축하고 출연 디자이너 미팅부터 연출·색보정·음향·구성까지 메인으로 담당했습니다. 디자인팀과 커뮤니케이션팀 간 조율을 주도하며 내부 리소스만으로 완성도를 끌어올렸습니다. 세션 평균 PV 3,143회, 1세션 〈지표가 좋으면 UX도 좋은 걸까?〉는 8,204회를 기록하며 전년 대비 콘텐츠 전달력이 강화된 사례로 평가받았습니다.</p>
+          </div>
+        </details>
+      </article>
+      <article class="card">
+        <a href="https://youtube.com/playlist?list=PLHozDm9nrChGddz2iZgAIwJHBDfq7b9T1&si=1poe_qE908lNtNQM" target="_blank" rel="noopener">
+            <div class="thumb"><img src="mg.jpg" alt="머니그라운드"><div class="tags"><span>카카오뱅크</span><span>3ep</span></div></div>
+          </a>
+        <h3>머니그라운드</h3>
+        <div class="meta">카카오뱅크의 금융 토크쇼</div>
+        <details>
+            <summary>자세히 보기</summary>
+            <div class="detail">
+            <p>카카오뱅크의 스포츠 금융 시리즈 머니그라운드의 연출과 제작에 참여해 야구, 양궁, 농구 편을 담당했습니다. 팟캐스트용 토크쇼인 만큼 대화가 또렷하게 들리도록 오디오에 특히 신경 썼고, 토크의 흐름이 자연스럽게 이어지도록 구성과 편집을 다듬었습니다.</p>
+          </div>
+        </details>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 쇼츠 오리지널 ============ -->
+<section id="shorts">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <div class="eyebrow">Shorts</div>
+        <h2 class="sec-title">쇼츠 오리지널</h2>
+        <p class="sec-desc">3초 안에 멈추게 하고, 끝까지 볼 수 있도록 쇼츠의 문법으로 기획하고 데이터로 다듬습니다.</p>
+      </div>
+      <div class="sec-count">3 projects</div>
+    </div>
+    <div class="grid four">
+
+      <article class="card">
+        <a href="https://www.youtube.com/playlist?list=PL1DJtS1Hv1PjhDRrpgSz1a1teICAfTL8g" target="_blank" rel="noopener">
+          <div class="thumb vertical"><img src="money.jpg" alt="문제가 money"><div class="tags"><span>쇼츠</span><span>111eps</span></div></div>
+        </a>
+        <h3>문제가 money</h3>
+        <div class="meta">토스의 청량한 금융 퀴즈쇼</div>
+        <details>
+          <summary>자세히 보기</summary>
+          <div class="detail"><p>총 111편의 쇼츠 영상의 기획, 섭외, 촬영, 연출, 제작에 참여하였고 특히 직접 섭외와 커뮤니케이션, 촬영, 연출을 온전히 담당했던 김재중과의 콜라보는 조회수 300만 회가 나오며 채널 전체 조회수 1위를 차지했습니다. 또한 총 조회수는 2700만 회가 나왔으며, 이는 시리즈를 업로드 하기 전 채널 조회수보다 5배다 높은 수치입니다. 더불어 구독자 5만명을 추가로 유입시켰습니다. 해당 영상은 많은 기업들이 레퍼런스로 삼아 재가공을 하기도 하였습니다. 유명 뉴스레터 캐릿에서 소개되기도 했고, 커뮤니티에서 좋은 반응을 얻었습니다.</p></div>
+        </details>
+      </article>
+    <article class="card">
+        <a href="https://www.instagram.com/toss.im/reel/C_upa61JE3-/" target="_blank" rel="noopener">
+          <div class="thumb vertical"><img src="fan.png" alt="팬더스트리"><div class="tags"><span>쇼츠</span><span>1eps</span></div></div>
+        </a>
+        <h3>팬더스트리</h3>
+        <div class="meta">토스피드 시리즈 팬더스트리 티징 콘텐츠</div>
+        <details>
+          <summary>자세히 보기</summary>
+          <div class="detail"><p>차우진 평론가와 함께하는 토스피드의 시리즈 팬더스트리의 티저 영상을 제작했습니다. 팬덤 경제학을 주제로 한 이 시리즈가 더 많은 사람들에게 알려질 수 있도록 인스타그램 릴스로 제작하여 배포하였습니다. 이 영상의 메인 PD로서 기획, 연출, 촬영, 편집 등 모든 과정을 책임지고 제작하였습니다. 특히, 초반 부분이 중요한 쇼츠의 특성을 살려 스탑모션 기법을 활용한 오프닝을 제작하여 14만 회의 조회수를 기록할 수 있었습니다.</p></div>
+        </details>
+      </article>
+       <article class="card">
+        <a href="https://www.instagram.com/dy_gamblingdieary" target="_blank" rel="noopener">
+          <div class="thumb vertical"><img src="gam.png" alt="박도영의 도박일기"><div class="tags"><span>쇼츠</span><span>42eps</span></div></div>
+        </a>
+        <h3>박도영의 도박일기</h3>
+        <div class="meta">토스 X 경찰청 청소년 도박 근절 캠페인</div>
+        <details>
+          <summary>자세히 보기</summary>
+          <div class="detail"><p>주인공 박도영은 AI face swap 기술을 활용하여 창조된 가상의 캐릭터입니다. 실제 도박중독청소년들의 얼굴을 활용해 만들었습니다. 총 37일 동안 게시된 콘텐츠를 통해 평범한 청소년 박도영이 도박에 빠지는 과정을 보여줍니다. 게시물의 촬영, 제작, 소품 준비에 참여하였으며, 특히 짧은 시간 안에 촬영 일정을 조율하기 위해 최소한의 이동 경로를 설정하고 촬영 장소를 선정했습니다.</p></div>
+        </details>
+    </article>
+      <article class="card">
+        <a href="https://www.instagram.com/scrubdaddykr/" target="_blank" rel="noopener">
+          <div class="thumb vertical"><img src="baby.jpeg" alt="스크럽 베이비 티징 캠페인"><div class="tags"><span>쇼츠</span><span>6eps</span></div></div>
+        </a>
+        <h3>스크럽 베이비 티징 캠페인</h3>
+        <div class="meta">스크럽 베이비 출시 암시 티징 콘텐츠</div>
+        <details>
+          <summary>자세히 보기</summary>
+          <div class="detail"><p>스크럽 베이비 티징 숏폼 시리즈(6편)를 기획·연출·촬영·편집 전 과정 단독으로 수행했으며, AI 기반 제작 프로세스를 활용해 빠른 반복 제작과 완성도 관리를 병행했습니다. 임신 테스트기, 초음파 등 해석을 유도하는 소재를 통해 정보 전달 없이 시청자의 추론을 유도하고, 댓글·공유·검색으로 이어지는 흐름을 설계했습니다. 그 결과 총 조회수 300만+ (최대 220만), 평균 50만+의 안정적 퍼포먼스를 기록했으며, 공유 2.1만·저장 1.8천 등 확산 중심 소비를 만들었습니다. 또한 제품 미노출 상태에서 ‘스크럽 베이비’ 검색량을 기존 브랜드 대비 최대 50% 수준의 신규 키워드 수요를 창출했습니다. 이후 고구마팜 레터 및 다수 큐레이션 계정에 소개되며 업계 레퍼런스로 확산되었습니다.</p></div>
+        </details>
+      </article>
+    <article class="card">
+        <a href="https://www.instagram.com/reel/DYoqfDwv4gv/" target="_blank" rel="noopener">
+          <div class="thumb vertical"><img src="toy.png" alt="토이스토리 콜라보"><div class="tags"><span>쇼츠</span><span>5eps</span></div></div>
+        </a>
+        <h3>토이스토리 콜라보</h3>
+        <div class="meta">토이스토리 콜라보 상품 티징 콘텐츠</div>
+        <details>
+          <summary>자세히 보기</summary>
+          <div class="detail"><p>토이스토리 콜라보 제품의 티징 영상 5편을 기획부터 촬영, AI 제작까지 혼자 완성했습니다. 콘셉트 기획과 구성, 촬영, 생성형 AI를 활용한 제작과 편집 전 과정을 단독으로 진행해, 제품의 무드를 살린 시리즈 콘텐츠로 마무리했습니다.</p></div>
+        </details>
+    </article>
+    <article class="card">
+        <a href="https://www.youtube.com/@thiscovery/shorts" target="_blank" rel="noopener">
+          <div class="thumb vertical"><img src="this.jpg" alt="Thiscovery"><div class="tags"><span>쇼츠</span><span>10eps</span></div></div>
+        </a>
+        <h3>Thiscovery</h3>
+        <div class="meta">정보 전달 쇼츠 시리즈</div>
+        <details>
+          <summary>자세히 보기</summary>
+          <div class="detail"><p>평소에 잘 알지 못했던 정보를 짧은 시간 안에 재미있게 전달하는 것을 목표로 하는 쇼츠 콘텐츠를 촬영하고 기획하며 제작하였습니다. 특히 제가 참여한 시점부터 시리즈에 변화를 주기 위해 직접 나레이션을 녹음하여 콘텐츠에 활용하기 시작했습니다. 매 회마다 새로운 아이템을 제안했으며, 특히 최근 유행하는 트렌드를 신속하게 파악해 콘텐츠에 반영할 수 있도록 노력했습니다.</p></div>
+        </details>
+    </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ [섹션 3] AI CREATOR ============ -->
+<section id="aicreator">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <div class="eyebrow">AI Creator</div>
+        <h2 class="sec-title">AI 크리에이터</h2>
+        <p class="sec-desc">AI를 활용해 캐릭터를 만들고 세계관 구축을 통해 이야기를 만들어나갑니다.</p>
+      </div>
+      <div class="sec-count">1 projects</div>
+    </div>
+    <div class="grid">
+      <article class="card">
+         <a href="https://www.instagram.com/kimpiggy_diary/" target="_blank" rel="noopener">
+          <div class="thumb"><img src="piggy.png" alt="김피기"><div class="tags"><span>8.6만</span></div></div>
+        </a>
+          <h3>김피기</h3>
+        <div class="meta">매일 다이어트에 실패하는 귀여운 돼지의 일상</div>
+        <details>
+          <summary>자세히 보기</summary>
+          <div class="detail"><p>AI 콘텐츠는 일회성 소비로 끝나는 경우가 많았고, 캐릭터 기반 숏폼 역시 반복 소비와 팬덤 형성이 어려운 구조였습니다. 또한 생성형 AI 콘텐츠는 플랫폼 내 광고성·실험성 콘텐츠로 인식되어 이탈이 발생하기 쉬운 문제가 있었습니다. 생성형 AI 툴(Midjourney, Kling, ChatGPT 등)을 활용해 캐릭터 IP 기반 숏폼 제작 파이프라인을 구축하고, 플랫폼별 소비 패턴에 맞춘 반복형 포맷 시스템을 설계했습니다. 특히 ‘다이어트 실패’, ‘현실 공감’, ‘감정 과몰입’ 등 반복 가능한 감정 구조를 중심으로 캐릭터 문법을 고정했습니다. 누적 조회수 7천만+, 인스타그램 팔로워 8.1만 확보, 다수 브랜드 협업 진행 (설빙, 켈로그 등)</p></div>
+        </details>
+      </article>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============ [섹션 4] AI DRAMA ============ -->
+<section id="aidrama">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <div class="eyebrow">AI Drama</div>
+        <h2 class="sec-title">AI 드라마</h2>
+        <p class="sec-desc">AI를 활용해 드라마 콘텐츠를 제작합니다.</p>
+      </div>
+      <div class="sec-count">1 projects</div>
+    </div>
+    <div class="grid">
+      <article class="card">
+        <a href="https://www.instagram.com/2ndraft.drama/" target="_blank" rel="noopener">
+          <div class="thumb"><img src="drama.png" alt="AI가 사람이 되는 법"><div class="tags"><span>로맨스</span></div></div>
+        </a>
+        <h3>AI와 사랑에 빠지지 않을 수 있을까?</h3>
+        <div class="meta">인간을 한심하게 여기던 AI가 사람 몸을 얻고, 가장 한심한 인간 하나를 만나 서로에게 사람이 되어간다.</div>
+      </article>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============ 연락처 ============
+     [수정 5] your@email.com 과 인스타 주소를 바꾸세요 -->
+<section id="contact" class="contact">
+  <div class="wrap">
+    <h2><a href="heun95@daum.net">함께 만들까요 →</a></h2>
+    <div class="links">
+      <a href="https://instagram.com/kimpiggy_diary" target="_blank" rel="noopener">@kimpiggy_diary</a>
+      <a href="https://instagram.com/2ndraft.drama/" target="_blank" rel="noopener">@2ndraft.drama</a>
+      <a href="mailto:heun95@daum.net">Email</a>
+    </div>
+  </div>
+</section>
+
+<footer>© 김현진 · AI Content Creator· Content Producer</footer>
+
+</body>
+</html>
